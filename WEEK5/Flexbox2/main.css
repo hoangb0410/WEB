@@ -1,15 +1,19 @@
-p {
-    font-family: Arial, Helvetica, sans-serif,sans-serif;
+body {
+    width: 90%;
+    max-width: 900px;
+    margin: 2em auto;
+    font: 0.9em/1.2 Arial, Helvetica, sans-serif;
 }
+
 div.container{
     display: flex;
 }
 
-div.container >div{
+div.container > div{
     padding: 10px;
     border-radius: 5px;
     background-color: #CFE8DC;
-    border: 2px solid rgb(79,185,227);
+    border: 2px solid #4cb5de;
     flex: 1;
 }
 aside{
@@ -30,19 +34,14 @@ div.acknowledgment{
     text-align: center;
     color: gray;
 }
-body {
-    width: 90%;
-    max-width: 900px;
-    margin: 2em auto;
-    font: 0.9em/1.2 Arial, Helvetica, sans-serif;
-}
-
 header{
     margin-bottom: 10px;
 }
+
 footer{
     margin-top: 10px;
 }
+
 a {
     text-decoration: none;
 }
