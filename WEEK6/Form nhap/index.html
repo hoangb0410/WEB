@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content = "Cao Viet Hoang_19020819">
+    <link rel="stylesheet" href="main.css">
+    <title>Form nhap</title>
+</head>
+<body>
+    <form id="form">
+        <div>
+            <label class="row">Họ tên:</label>
+            <input type="text" name="name" id="name" class="required">
+            <span id="name_error" class="error" ></span>
+            <br>
+        </div>
+        <div>
+            <label class="row">Địa chỉ:</label>
+            <input type="text" name="address" id="address">
+            <br>
+        </div>
+        <div>
+            <label class="row">Giới tính:</label>
+            <label class="radio-container">
+                <input type="radio" name="gender" id="male" checked="checked"> Nam
+                <span class="checkmark"></span>
+			    <span class="checkmark2"></span>
+            </label>
+            <label class="radio-container">
+                <input type="radio" name="gender" id="female"> Nữ
+                <span class="checkmark"></span>
+			    <span class="checkmark2"></span>
+            </label>
+            <br>
+        </div>
+        <div>
+            <label class="row">Ngày sinh:</label>
+            <input type="text" name="birthday" id="birthday" placeholder="nn/tt/nnnn" class="required">
+            <span id="birthday_error" class="error"></span>
+            <br>
+        </div>
+        <div>
+            <label class="row">E-mail:</label>
+            <input type="text" name="email" id="email" class="required">
+            <span id="email_error" class="error"></span>
+            <br>
+        </div>
+        <div>
+            <label class="row">Điện thoại:</label>
+            <input type="text" name="phone" id="phone" onkeyup="javascript:XuongDong(event,this,'en');">
+            <br>
+        </div>
+        <div>
+            <label class="row">Khoá đăng ký:</label>
+            <label class="checkbox-container">
+                <input type="checkbox" id="en" name="en"
+                    onkeyup="javascript:XuongDong(event, this, 'ad');"/> Tiếng Anh
+                <span class="checkmark"></span>
+                <span class="checkmark2"></span>
+            </label>
+            
+            <label class="checkbox-container">
+                <input type="checkbox" id="ad" name="ad"
+                onkeyup="javascript:XuongDong(event, this, 'it');"/> Quản trị
+                <span class="checkmark"></span>
+                <span class="checkmark2"></span>
+            </label>
+
+            <label class="checkbox-container">
+                <input type="checkbox" id="it" name="it"
+                onkeyup="javascript:XuongDong(event, this, 'username');"/> CNTT
+                <span class="checkmark"></span>
+                <span class="checkmark2"></span>
+            </label>
+            <br>
+        </div>
+        <div>
+            <label class="row">Tên sử dụng:</label>
+            <input type="text" name="username" id="username" class="required" onkeyup="javascript:XuongDong(event,this,'password');">
+            <span id="username_error" class="error"></span>
+            <br>
+        </div>
+        <div>
+            <label class="row">Mật khẩu:</label>
+            <input type="password" name="password" id="password" class="required" onkeyup="javascript:XuongDong(event,this,'repassword');">
+            <span id="password_error" class="error"></span>
+            <br>
+        </div>
+        <div>
+            <label class="row">Gõ lại mật khẩu:</label>
+            <input type="password" name="repassword" id="repassword" class="required" onkeyup="javascript:XuongDong(event,this,'note');">
+            <span id="repassword_error" class="error"></span>
+            <br>
+        </div>
+        <div>
+            <label class="row">Ghi chú:</label>
+            <textarea  name="note" id="note" class="required"></textarea>
+            <br>
+        </div>
+        <div>
+            <label class="HangMoi">&nbsp;</label>
+            <img class="preview nodisplay" src="" style="height:200px;"/>
+            <br/>
+        </div>
+        <div>
+            <label class="row">Ảnh chân dung:</label>
+            <input type="file" name="FileUpload" id="FileUpload" accept=".png, .jpg">
+            <br>
+        </div>
+        <div>
+            <label class="row">&nbsp;</label>
+            <input type="button" onclick="javascript:Accept();" value="Chấp nhận">
+            <input type="button" onclick="javascript:Ignore();" value="Bỏ qua">
+            <br>
+        </div>
+    </form>
+    <!-- Link javascript -->
+    <script src="main.js"></script>
+</body>
+</html>

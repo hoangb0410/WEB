@@ -1,0 +1,29 @@
+#table {
+	border: solid 1px #000000;
+	border-collapse:collapse;
+}
+#table td, th {
+	border: solid 1px #000000;
+}
+#table tr.odd:hover, #table tr.even:hover {
+	background-color: rgb(33, 247, 33);
+    cursor: grab;
+}
+#table thead {
+	background-color:rgb(0, 251, 255);
+}
+#table tr.odd {
+	background-color:#b5b4b4;
+}
+#table tr.even {
+	background-color:white;
+}
+#table tr.selected {
+    background-color:yellow;
+}
+.nodisplay {
+    display:none;
+}
+div.group-container {
+    height:30px;
+}
