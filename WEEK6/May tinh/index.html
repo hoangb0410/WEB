@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Cao Viet Hoang_19020819">
+    <title>May tinh</title>
+</head>
+<body>
+    <form name="Keypad">
+        <table>
+            <b>
+                <tr>
+                    <td><table border="2" width="50" height="60" cellpadding="1" cellspacing="5">
+                    <tr>
+                        <td colspan="3" ><input name="ReadOut" type="Text" size="24" value="0" width="100%"> </td>
+                        <td>&nbsp;</td>
+                        <td><input name="ClearButton" type="Button" value="  C  " onclick="Clear()"> </td>
+                        <td><input name="ClearEntryButton" type="Button" value="  CE " onclick="ClearEntry()"> </td>
+                    </tr>
+                <tr>
+                    <td><input name="Seven" type="Button" value="  7  " onclick="NumPressed(7)"> </td>
+                    <td><input name="Eight" type="Button" value="  8  " onclick="NumPressed(8)"> </td>
+                    <td><input name="Nine" type="Button" value="  9  " onclick="NumPressed(9)"> </td>
+                    <td>&nbsp;</td>
+                    <td><input name="NegativeButton" type="Button" value=" +/- " onclick="Negative()"> </td>
+                    <td><input name="PercentButton" type="Button" value="  % " onclick="Percent()"> </td>
+                </tr>
+                <tr>
+                    <td><input name="Four" type="Button" value="  4  " onclick="NumPressed(4)"> </td>
+                    <td><input name="Five" type="Button" value="  5  " onclick="NumPressed(5)"> </td>
+                    <td><input name="Six" type="Button" value="  6  " onclick="NumPressed(6)"> </td>
+                    <td>&nbsp;</td>
+                    <td align="middle"><input name="Plus" type="Button" value="  +  " onclick="Operation('+')"> </td>
+                    <td align="middle"><input name="Minus" type="Button" value="   -   "  onclick="Operation('-')"> </td>
+                </tr>
+                <tr>
+                    <td><input name="One" type="Button" value="  1  " onclick="NumPressed(1)"> </td>
+                    <td><input name="Two" type="Button" value="  2  " onclick="NumPressed(2)"> </td>
+                    <td><input name="Three" type="Button" value="  3  " onclick="NumPressed(3)"> </td>
+                    <td>&nbsp;</td>
+                    <td align="middle"><input name="Multiply" type="Button" value="  *  " onclick="Operation('*')"> </td>
+                    <td align="middle"><input name="Divide" type="Button" value="   /   " onclick="Operation('/')"> </td>
+                </tr>
+                <tr>
+                    <td><input name="Zero" type="Button" value="  0  " onclick="NumPressed(0)"> </td>
+                    <td><input name="Decimal" type="Button" value="   .  " onclick="Decimal()"> </td>
+                    <td colspan="3">&nbsp;</td>
+                    <td><input name="Equals" type="Button" value="  =  " onclick="Operation('=')"> </td>
+                </tr>
+            </b>
+        </table>      
+    </form>
+    <script src="main.js"></script>
+</body>
+</html>
