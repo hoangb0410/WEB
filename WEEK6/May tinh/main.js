@@ -1,41 +1,18 @@
 var FKey = document.Keypad;
 var Cal = 0;
 var FlagNewNum = false;
-var PendingOp = "";
-
-// Nhan so
-function NumPressed (Num) {
+var PendingOperator = "";
+// Nhấn số
+function NumPressed (Number) {
     if (FlagNewNum==true) {
-        FKey.ReadOut.value  = Num;
+        FKey.ReadOut.value  = Number;
         FlagNewNum = false;
     }
     else {
         if (FKey.ReadOut.value == "0")
-            FKey.ReadOut.value = Num;
+            FKey.ReadOut.value = Number;
         else
-            FKey.ReadOut.value += Num;
-    }
-}
-
-// Phep tinh
-function Operation (Op) {
-    var Readout = FKey.ReadOut.value;
-    if (FlagNewNum==false || PendingOp == "=");
-    {
-        FlagNewNum = true;
-        if ( '+' == PendingOp )
-            Cal += parseFloat(Readout);
-        else if ( '-' == PendingOp )
-            Cal -= parseFloat(Readout);
-        else if ( '/' == PendingOp )
-            Cal /= parseFloat(Readout);
-        else if ( '*' == PendingOp )
-            Cal *= parseFloat(Readout);
-        else
-            Cal = parseFloat(Readout);
-
-        FKey.ReadOut.value = Cal;
-        PendingOp = Op;
+            FKey.ReadOut.value += Number;
     }
 }
 // So thap phan
@@ -59,7 +36,7 @@ function ClearEntry () {
 // Xoa toan bo
 function Clear () {
     Cal = 0;
-    PendingOp = "";
+    PendingOperator = "";
     ClearEntry();
 }
 // So am
@@ -69,4 +46,25 @@ function Negative () {
 // Phan tram
 function Percent () {
     FKey.ReadOut.value = (parseFloat(FKey.ReadOut.value) / 100) * parseFloat(Cal);
+}
+// Phep tinh
+function Operation (Op) {
+    var Readout = FKey.ReadOut.value;
+    if (FlagNewNum==false || PendingOperator == "=");
+    {
+        FlagNewNum = true;
+        if ( '+' == PendingOperator )
+            Cal += parseFloat(Readout);
+        else if ( '-' == PendingOperator )
+            Cal -= parseFloat(Readout);
+        else if ( '/' == PendingOperator )
+            Cal /= parseFloat(Readout);
+        else if ( '*' == PendingOperator )
+            Cal *= parseFloat(Readout);
+        else
+            Cal = parseFloat(Readout);
+
+        FKey.ReadOut.value = Cal;
+        PendingOperator = Op;
+    }
 }
