@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Cao Viet Hoang_19020819">
+	<link rel="stylesheet" href="main.css">
+	<title>Cây (jQuery)</title>
+</head>
+<body>
+	<ul class="tree">
+		<li class="has-child"><img class="expend-colapse" src="static/minus.gif" /><a href=""><img src="static/folder.gif"/> Root</a>
+			<ul>
+				<li class="no-child"><a href=""><img src="static/folder.gif"/> Folder 1</a></li>
+				<li class="has-child"><img class="expend-colapse" src="static/minus.gif" /><a href=""><img src="static/folder.gif"/> Folder 2</a>
+					<ul>
+						<li class="no-child"><a href=""><img src="static/folder.gif"/> Folder 2-1</a></li>
+						<li class="has-child"><img class="expend-colapse" src="static/minus.gif" /><a href=""><img src="static/folder.gif"/> Folder 2-2</a>
+							<ul>
+								<li class="no-child"><a href=""><img src="static/folder.gif"/> Folder 2-2-1</a></li>
+								<li class="no-child"><a href=""><img src="static/folder.gif"/> Folder 2-2-2</a></li>
+							</ul>
+						</li>
+						<li class="no-child"><a href=""><img src="static/folder.gif"/> Folder 2-3</a></li>
+					</ul>
+				</li>
+				<li class="no-child"><a href=""><img src="static/folder.gif"/> Folder 3</a></li>
+				<li class="has-child"><img class="expend-colapse" src="static/minus.gif" /><a href=""><img src="static/folder.gif"/> Folder 4</a>
+					<ul>
+						<li class="no-child"><a href=""><img src="static/folder.gif"/> Folder 4-1</a></li>
+						<li class="no-child"><a href=""><img src="static/folder.gif"/> Folder 4-2</a></li>
+						<li class="no-child"><a href=""><img src="static/folder.gif"/> Folder 4-3</a></li>
+					</ul>
+				</li>
+				<li class="no-child"><a href=""><img src="static/folder.gif"/> Folder 5</a></li>
+			</ul>
+		</li>
+	</ul>
+	<script type="text/javascript" src="jquery-3.7.1.min.js"></script>
+	<script type="text/javascript" src="main.js"></script>
+</body>
+</html>

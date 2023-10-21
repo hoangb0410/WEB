@@ -1,0 +1,276 @@
+* sync:
+    Khi click vào nút "sync", chương trình sẽ thực hiện các bước sau đây:
++ Hàm clearOutput() được gọi để xóa nội dung trong div.output.
++ Hàm output("BEGIN sync") được gọi để thêm chuỗi "BEGIN sync" vào div.output.
++ Hàm sFunction() được gọi để thực hiện một hàm đồng bộ, trả về chuỗi "Hello S!".
++ Hàm output(ret) được gọi để thêm giá trị trả về từ sFunction() vào div.output. Chuỗi "Hello S!" được thêm vào.
++ Hàm output("END.") được gọi để thêm chuỗi "END." vào div.output.
+Bước 1:
+    Call stack: clearOutput()
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 2:
+    Call stack: output("BEGIN sync")
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 3:
+    Call stack: sFunction()
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 4:
+    Call stack: output(ret)
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 5:
+    Call stack: output("END.")
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Sau khi kết thúc bước thực thi, call stack trở về trạng thái rỗng, macrotask queue và microtask queue vẫn giữ nguyên trạng thái rỗng.
+
+* settimeout:
+Bước 1: Nhấp vào nút "settimeout"
+    Call stack: clearOutput() => document.querySelector('button.settimeout').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 2: Thực hiện hàm clearOutput()
+    Call stack: document.querySelector(".output").innerHTML = ""; => clearOutput() => document.querySelector('button.settimeout').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 3: Thêm "BEGIN settimeout" vào div.output
+    Call stack: output("BEGIN settimeout") => document.createElement('p') => document.querySelector(".output").appendChild(p) => output() => clearOutput() => document.querySelector('button.settimeout').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 4: Gọi hàm setTimeout()
+    Call stack: setTimeout() => document.createElement('p') => document.querySelector(".output").appendChild(p) => output() => clearOutput() => document.querySelector('button.settimeout').onclick
+    Macrotask queue: [setTimeout callback function]
+    Microtask queue: Rỗng
+Bước 5: Xóa nội dung trong div.output
+    Call stack: document.querySelector(".output").innerHTML = ""; => clearOutput() => document.querySelector('button.settimeout').onclick
+    Macrotask queue: [setTimeout callback function]
+    Microtask queue: Rỗng
+Bước 6: Thêm "END." vào div.output
+    Call stack: output("END.") => document.createElement('p') => document.querySelector(".output").appendChild(p) => output() => clearOutput() => document.querySelector('button.settimeout').onclick
+    Macrotask queue: [setTimeout callback function]
+    Microtask queue: Rỗng
+Bước 7: Hàm setTimeout callback function được thêm vào call stack và thực thi
+    Call stack: [setTimeout callback function] => document.createElement('p') => document.querySelector(".output").appendChild(p) => output() => clearOutput() => document.querySelector('button.settimeout').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 8: Thêm giá trị trả về từ hàm sFunction() vào div.output
+    Call stack: output(ret) => document.createElement('p') => document.querySelector(".output").appendChild(p) => output() => clearOutput() => document.querySelector('button.settimeout').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 9: Thêm "Hello S!" vào div.output
+    Call stack: output("Hello S!") => document.createElement('p') => document.querySelector(".output").appendChild(p) => output() => clearOutput() => document.querySelector('button.settimeout').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 10: Thêm "END." vào div.output
+    Call stack: output("END.") => document.createElement('p') => document.querySelector(".output").appendChild(p) => output() => clearOutput() => document.querySelector('button.settimeout').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Sau khi kết thúc bước thực thi, call stack trở về trạng thái rỗng, macrotask queue và microtask queue vẫn giữ nguyên trạng thái rỗng. Kết quả cuối cùng được hiển thị trên giao diện là "Hello S!" được thêm vào div.output.
+
+* promise:
+Bước 1: Nhấp vào button "promise"
+    Call stack: clearOutput() => document.querySelector('button.promise').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 2: Thực hiện hàm clearOutput()
+    Call stack: document.querySelector(".output").innerHTML = ""; => clearOutput() => document.querySelector('button.promise').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 3: Thêm "BEGIN promise" vào div.output
+    Call stack: output("BEGIN promise") => document.createElement('p') => document.querySelector(".output").appendChild(p) => output() => clearOutput() => document.querySelector('button.promise').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 4: Gọi hàm aFunction1()
+    Call stack: aFunction1() => new Promise() => aFunction1() => document.querySelector('button.promise').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 5: Thêm "END." vào div.output
+    Call stack: output("END.") => document.createElement('p') => document.querySelector(".output").appendChild(p) => output() => clearOutput() => document.querySelector('button.promise').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 6: Thêm "Hello A1!" vào div.output
+    Call stack: output("Hello A1!") => document.createElement('p') => document.querySelector(".output").appendChild(p) => output() => clearOutput() => document.querySelector('button.promise').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Sau khi kết thúc bước thực thi, call stack trở về trạng thái rỗng, macrotask queue và microtask queue vẫn giữ nguyên trạng thái rỗng. Kết quả cuối cùng được hiển thị trên giao diện là "Hello A1!" được thêm vào div.output. 
+
+* async:
+Bước 1: Nhấp vào button "async"
+    Call stack: clearOutput() => document.querySelector('button.async').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 2: Thực hiện hàm clearOutput()
+    Call stack: document.querySelector(".output").innerHTML = ""; => clearOutput() => document.querySelector('button.async').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 3: Thêm "BEGIN async" vào div.output
+    Call stack: output("BEGIN async") => document.createElement('p') => document.querySelector(".output").appendChild(p) => output() => clearOutput() => document.querySelector('button.async').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 4: Gọi hàm aFunction2()
+    Call stack: aFunction2() => document.querySelector('button.async').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 5: Thêm "END." vào div.output
+    Call stack: output("END.") => document.createElement('p') => document.querySelector(".output").appendChild(p) => output() => clearOutput() => document.querySelector('button.async').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 6: Thêm "Hello A2!" vào div.output
+    Call stack: output("Hello A2!") => document.createElement('p') => document.querySelector(".output").appendChild(p) => output() => clearOutput() => document.querySelector('button.async').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Sau khi kết thúc bước thực thi, call stack trở về trạng thái rỗng, macrotask queue và microtask queue vẫn giữ nguyên trạng thái rỗng. Kết quả cuối cùng được hiển thị trên giao diện là "Hello A2!" được thêm vào div.output.    
+
+* await:
+Bước 1: Nhấp vào button "async"
+    Call stack: clearOutput() => document.querySelector('button.async').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 2: Thực hiện hàm clearOutput()
+    Call stack: document.querySelector(".output").innerHTML = ""; => clearOutput() => document.querySelector('button.async').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 3: Thêm "BEGIN await" vào div.output
+    Call stack: output("BEGIN await") => document.createElement('p') => document.querySelector(".output").appendChild(p) => output() => clearOutput() => document.querySelector('button.async').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 4: Gọi hàm aFunction1()
+    Call stack: aFunction1() => document.querySelector('button.async').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 5: Thêm "Hello A1!" vào div.output (bằng cách sử dụng then() của Promise)
+    Call stack: anonymous() => aFunction1().then() => document.querySelector('button.async').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 6: Thêm "END." vào div.output
+    Call stack: output("END.") => document.createElement('p') => document.querySelector(".output").appendChild(p) => output() => clearOutput() => document.querySelector('button.async').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Sau khi kết thúc bước thực thi, call stack trở về trạng thái rỗng, macrotask queue và microtask queue vẫn giữ nguyên trạng thái rỗng. Kết quả cuối cùng được hiển thị trên giao diện là "BEGIN await", "Hello A1!" và "END." được thêm vào div.output.
+
+* async vs sync:
+Bước 1: Nhấp vào button "sync vs async"
+    Call stack: clearOutput() => document.querySelector('button.syncvsasync').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 2: Thực hiện hàm clearOutput()
+    Call stack: document.querySelector(".output").innerHTML = ""; => clearOutput() => document.querySelector('button.syncvsasync').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 3: Thêm "BEGIN sync vs async" vào div.output
+    Call stack: output("BEGIN sync vs async") => document.createElement('p') => document.querySelector(".output").appendChild(p) => output() => clearOutput() => document.querySelector('button.syncvsasync').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 4: Gọi hàm aFunction1()
+    Call stack: aFunction1().then() => document.querySelector('button.syncvsasync').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 5: Gọi hàm aFunction2()
+    Call stack: aFunction2().then() => document.querySelector('button.syncvsasync').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 6: Gọi hàm sFunction()
+    Call stack: sFunction() => document.querySelector('button.syncvsasync').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 7: Thêm "Hello S!" vào div.output
+    Call stack: output("Hello S!") => document.createElement('p') => document.querySelector(".output").appendChild(p) => output() => clearOutput() => document.querySelector('button.syncvsasync').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 8: Thêm "END." vào div.output
+    Call stack: output("END.") => document.createElement('p') => document.querySelector(".output").appendChild(p) => output() => clearOutput() => document.querySelector('button.syncvsasync').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 9: Thêm "Hello A1!" vào div.output (bằng cách sử dụng then() của Promise)
+    Call stack: anonymous() => aFunction1().then() => document.querySelector('button.syncvsasync').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 10: Thêm "Hello A2!" vào div.output (bằng cách sử dụng then() của Promise)
+    Call stack: anonymous() => aFunction2().then() => document.querySelector('button.syncvsasync').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Sau khi kết thúc bước thực thi, call stack trở về trạng thái rỗng, macrotask queue và microtask queue vẫn giữ nguyên trạng thái rỗng. Kết quả cuối cùng được hiển thị trên giao diện là "BEGIN sync vs async", "Hello S!", "END.", "Hello A1!" và "Hello A2!" được thêm vào div.output.
+
+* waitall:
+Bước 1: Nhấp vào button "waitall"
+    Call stack: clearOutput() => document.querySelector('button.waitall').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 2: Thực hiện hàm clearOutput()
+    Call stack: document.querySelector(".output").innerHTML = ""; => clearOutput() => document.querySelector('button.waitall').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 3: Thêm "BEGIN waitall" vào div.output
+    Call stack: output("BEGIN waitall") => document.createElement('p') => document.querySelector(".output").appendChild(p) => output() => clearOutput() => document.querySelector('button.waitall').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 4: Gọi hàm aFunction1() và aFunction2()
+    Call stack: aFunction1().then() => aFunction2().then() => document.querySelector('button.waitall').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 5: Thêm "END." vào div.output
+    Call stack: output("END.") => document.createElement('p') => document.querySelector(".output").appendChild(p) => output() => clearOutput() => document.querySelector('button.waitall').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 6: Đợi cả aFunction1() và aFunction2() hoàn thành (sử dụng Promise.all())
+    Call stack: Promise.all().then() => document.querySelector('button.waitall').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 7: Thêm "Hello A1!" vào div.output (khi aFunction1() hoàn thành)
+    Call stack: output("Hello A1!") => document.createElement('p') => document.querySelector(".output").appendChild(p) => output() => clearOutput() => document.querySelector('button.waitall').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Bước 8: Thêm "Hello A2!" vào div.output (khi aFunction2() hoàn thành)
+    Call stack: output("Hello A2!") => document.createElement('p') => document.querySelector(".output").appendChild(p) => output() => clearOutput() => document.querySelector('button.waitall').onclick
+    Macrotask queue: Rỗng
+    Microtask queue: Rỗng
+Sau khi kết thúc bước thực thi, call stack trở về trạng thái rỗng, macrotask queue và microtask queue vẫn giữ nguyên trạng thái rỗng. Kết quả cuối cùng được hiển thị trên giao diện là "BEGIN waitall", "END.", "Hello A1!" và "Hello A2!" được thêm vào div.output.
+
+* mixed:
+Bước 1: Click vào button "mixed"
+    Call stack: clearOutput, output, setTimeout, setTimeout, Promise, Promise, output.
+Bước 2: Gọi hàm clearOutput()
+    Call stack: output, setTimeout, setTimeout, Promise, Promise, output.
+Bước 3: Gọi hàm output("BEGIN mixed")
+    Call stack: setTimeout, setTimeout, Promise, Promise, output.
+Bước 4: Thực thi setTimeout(() => { output('setTimeout 1'); }, 10);
+    Call stack: setTimeout, setTimeout, Promise, Promise.
+Bước 5: Thực thi setTimeout(() => { output('setTimeout 2'); }, 0);
+    Call stack: setTimeout, Promise, Promise.
+Bước 6: Thực thi Promise(function(fulfill, reject) { fulfill('Promise 1'); })
+    Call stack: Promise, Promise.
+Bước 7: Thực thi Promise((fulfill, reject) => { fulfill('Promise 2'); })
+    Call stack: Promise.
+Bước 8: Thực thi output("END.")
+    Call stack: output.
+Bước 9: Thực thi microtasks (Promise callbacks)
+    Microtask queue: fulfill('Promise 1'), fulfill('Promise 2').
+    Call stack: output.
+Bước 10: Thực thi fulfill('Promise 1')
+    Microtask queue: fulfill('Promise 2').
+    Call stack: output.
+Bước 11: Thực thi fulfill('Promise 2')
+    Microtask queue: empty.
+    Call stack: output.
+Bước 12: Thực thi output("Promise 1")
+    Call stack: output.
+Bước 13: Thực thi output("Promise 2")
+    Call stack: output.
+Bước 14: Thực thi microtask queue (Promise callbacks)
+    Microtask queue: empty.
+    Call stack: output.
+Bước 15: Thực thi setTimeout callback: output('setTimeout 2')
+    Call stack: output.
+Bước 16: Thực thi setTimeout callback: output('setTimeout 1')
+    Call stack: output.
+Bước 17: Thực thi microtask queue (Promise callbacks)
+    Microtask queue: empty.
+    Call stack: output.
+Bước 18: Kết thúc thực thi.
+
+Đầu tiên, các hàm trong hàm setTimeout và Promise được thêm vào macrotask queue và chờ đợi thời gian chờ của setTimeout hoặc các hàm khác trong queue.
+Khi macrotask queue trống, microtask queue được kiểm tra và các hàm trong đó được thực thi theo trình tự FIFO.
+Trong trường hợp này, Promise callbacks được thực thi trước và sau đó mới đến setTimeout callbacks.
