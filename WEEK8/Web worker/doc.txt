@@ -1,0 +1,2 @@
+1. Sựa khác biệt giữa dedicated và shared worker:
+    Shared worker có thể được truy cập từ nhiều tập lệnh, trong khi dedicated worker chỉ có thể được truy cập từ tập lệnh đã tạo ra nó lần đầu tiên.
