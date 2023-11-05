@@ -1,0 +1,27 @@
+p{
+    font-weight: bold;
+}
+
+/* @media screen and (min-width:1000px) {
+    .a {display: inline;width:50%;}
+} */
+
+/* @media screen and (min-width:500px) {
+    .a {float:left;width:50%;}
+} */
+
+/* @media screen and (max-width:500px) {
+    .a {float:left;width:50%;}
+} */
+
+/* @media screen and (max-width:500px) {
+    .a {display: inline;width:50%;}
+} */
+
+/* .a {
+    font-weight:bold;
+} */
+
+div.a{
+    color:red;
+}

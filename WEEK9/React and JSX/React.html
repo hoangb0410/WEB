@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Cao Viet Hoang_19020819">
+	<link rel="stylesheet" href="main.css">
+	<title>React</title>
+</head>
+<body>
+	<div id="root"></div>
+	<script src="react.min.js"></script>
+	<script src="react-dom.min.js"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+	<script type="text/babel">
+		class Product extends React.Component {
+  			constructor(props) { 
+				super(props); 
+				this.state = {isBookmarked:this.props.isBookmarked}
+				this.handleClick = this.handleClick.bind(this);
+		    }
+		    handleClick() {
+				this.setState((prevState) => ({ isBookmarked: !prevState.isBookmarked }));
+		    }
+	  		render() {
+	    		return React.createElement(
+	      				"div",
+	      				{className: this.props.display? (this.state.isBookmarked ? "box yellow" : "box"): "nodisplay"},
+	     				React.createElement("h1", null, this.props.name),
+	      				React.createElement("p", null, this.props.description),
+		    			React.createElement("button", { onClick: this.handleClick }, this.state.isBookmarked ? 'Remove bookmark' : 'Set bookmark')
+	   		 	);
+	  		}
+		}
+		
+		class ProductList extends React.Component {
+			constructor(props) { 
+				super(props); 
+			}
+			render() {
+				var listItems = [];
+				
+				this.props.products.forEach((p) => {
+					var txt = this.props.searchText.toLowerCase();
+					var n = p.name.toLowerCase();
+					var desc = p.description.toLowerCase();	
+					listItems.push(
+							React.createElement(Product, { name: p.name, description: p.description, isBookmarked: p.isBookmarked, display:(txt == "" || n.indexOf(txt) > -1 || desc.indexOf(txt) > -1) })
+					);     
+				});
+    			return React.createElement('div', null, listItems);
+		  	}
+		}
+		class SearchBar extends React.Component {
+			constructor(props) { 
+				super(props);
+				this.handleInputTextChanged = this.handleInputTextChanged.bind(this);
+		  	}
+			handleInputTextChanged(e) { 
+				this.props.onSearch(e.target.value);
+			}
+			render() {
+				return 	React.createElement("input", {type:"text", placeholder:"Input text to search", onChange:this.handleInputTextChanged});
+			}
+		}
+		class SearchableProductList extends React.Component {
+			constructor(props) { 
+				super(props); 
+				this.state = {searchText: ""};
+				this.doSearch = this.doSearch.bind(this);
+		  	}
+			doSearch(txt) {
+				 this.setState({searchText: txt});
+			}
+			render() {
+				return React.createElement("div", null,
+						React.createElement(SearchBar, {onSearch:this.doSearch}),
+						React.createElement(ProductList, {products:this.props.products, searchText:this.state.searchText})								
+				);
+			}
+		}
+		ReactDOM.render(
+	 	 	React.createElement(SearchableProductList, {products:[{name:"Dell Laptops", description:"Laptops from Dell", isBookmarked: false}, {name:"Dell PCs", description:"PCs from Dell", isBookmarked:true}, {name:"HP Laptops", description:"Laptops from HP", isBookmarked:false}]}),
+	  		document.getElementById('root')
+		);
+	</script>
+</body>
+</html>

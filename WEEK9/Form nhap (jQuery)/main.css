@@ -1,0 +1,10 @@
+label.row {
+    float:left;
+    width:100px;
+}
+span.error { 
+    color:red;
+}
+form br {
+    clear: both;
+}

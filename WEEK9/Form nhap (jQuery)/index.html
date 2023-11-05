@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Cao Viet Hoang_19020819">
+    <link rel="stylesheet" href="main.css">
+    <title>Form nhap (jQuery)</title>
+</head>
+<body>
+    <form method = "post" id="form1">
+        <label for="studentID" class="row">Mã:</label>
+        <input type="text" name="studentID" id="studentID"/>
+        <span id="studentID_error" class="error"></span>
+        <br/>
+        <label for="fullname" class="row">Họ tên:</label>
+        <input type="text" name="fullname" id="fullname"/>
+        <span id="fullname_error" class="error"></span>
+        <br/>
+        <label for="birthday" class="row">Ngày sinh:</label>
+        <input type="text" name="birthday" id="birthday"/>
+        <span id="birthday_error" class="error"></span>
+        <br/>
+        <label for="gender" class="row">Giới tính:</label>
+        <select id="gender" name="gender">
+            <option value="1" selected="selected">Nam</option>
+            <option value="0">Nữ</option>
+        </select>
+        <br/>       
+        <label for="hometown" class="row">Quê quán:</label>
+        <input type="text" name="hometown" id="hometown"/>
+        <br/>   
+        <label class="row">&nbsp;</label>
+        <input type="button" id="acceptbtn" value = "Chấp nhận"/>
+        <input type="button" value = "Bỏ qua"/>
+    </form>
+    <script type="text/javascript" src="jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+</body>
+</html>

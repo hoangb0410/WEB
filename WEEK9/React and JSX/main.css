@@ -1,0 +1,9 @@
+.box {
+    border:solid 1px red;
+}
+.yellow {
+    background-color:yellow;
+}
+.nodisplay {
+    display:none;
+}
