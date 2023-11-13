@@ -1,4 +1,3 @@
-//Lay doi tuong Ajax Engine
 function getXmlHttpObject() {
     var xmlHttp = null;  
     try {  
